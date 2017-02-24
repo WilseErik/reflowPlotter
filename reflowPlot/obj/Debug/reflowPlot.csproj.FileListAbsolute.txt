@@ -1,0 +1,10 @@
+D:\Program\Dropbox\Dropbox\Kod\EmbeddedC\reflow\sw\reflow_plot\reflowPlot\reflowPlot\bin\Debug\reflowPlot.exe.config
+C:\Users\Erik\Dropbox\Kod\EmbeddedC\reflow\sw\reflow_plot\reflowPlot\reflowPlot\bin\Debug\reflowPlot.exe.config
+C:\Users\Erik\Dropbox\Kod\EmbeddedC\reflow\sw\reflow_plot\reflowPlot\reflowPlot\bin\Debug\reflowPlot.exe
+C:\Users\Erik\Dropbox\Kod\EmbeddedC\reflow\sw\reflow_plot\reflowPlot\reflowPlot\bin\Debug\reflowPlot.pdb
+C:\Users\Erik\Dropbox\Kod\EmbeddedC\reflow\sw\reflow_plot\reflowPlot\reflowPlot\obj\Debug\reflowPlot.csprojResolveAssemblyReference.cache
+C:\Users\Erik\Dropbox\Kod\EmbeddedC\reflow\sw\reflow_plot\reflowPlot\reflowPlot\obj\Debug\reflowPlot.Properties.Resources.resources
+C:\Users\Erik\Dropbox\Kod\EmbeddedC\reflow\sw\reflow_plot\reflowPlot\reflowPlot\obj\Debug\reflowPlot.csproj.GenerateResource.Cache
+C:\Users\Erik\Dropbox\Kod\EmbeddedC\reflow\sw\reflow_plot\reflowPlot\reflowPlot\obj\Debug\reflowPlot.exe
+C:\Users\Erik\Dropbox\Kod\EmbeddedC\reflow\sw\reflow_plot\reflowPlot\reflowPlot\obj\Debug\reflowPlot.pdb
+C:\Users\Erik\Dropbox\Kod\EmbeddedC\reflow\sw\reflow_plot\reflowPlot\reflowPlot\obj\Debug\reflowPlot.MainForm.resources
