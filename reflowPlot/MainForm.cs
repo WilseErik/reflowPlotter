@@ -16,16 +16,23 @@ namespace reflowPlot
     {
         private List<double> temperatureXList = new List<double>();
         private List<double> temperatureYList = new List<double>();
+
         private List<double> errorXList = new List<double>();
         private List<double> errorYList = new List<double>();
+
         private List<double> servoXList = new List<double>();
         private List<double> servoYList = new List<double>();
+
         private List<double> heaterXList = new List<double>();
         private List<double> heaterYList = new List<double>();
+
         string tempSeriesName = "Temperature";
         string errorSeriesName = "Error";
         string servoSeriesName = "Servo";
         string heaterSeriesName = "Heater";
+
+        double lastTimeValue = -1;
+
         BackgroundWorker comLineReader;
 
         SerialPort serialPort;
@@ -38,6 +45,8 @@ namespace reflowPlot
 
             connectButton.Enabled = true;
             disconnectButton.Enabled = false;
+
+            lastTimeValue = -1;
         }
 
         private void AddTempValue(double time, double temp)
@@ -232,10 +241,24 @@ namespace reflowPlot
 
                 if (parseOk)
                 {
+                    if (lastTimeValue > time)
+                    {
+                        temperatureXList.Clear();
+                        temperatureYList.Clear();
+                        heaterXList.Clear();
+                        heaterYList.Clear();
+                        servoXList.Clear();
+                        servoYList.Clear();
+                        errorXList.Clear();
+                        errorYList.Clear();
+                    }
+
                     AddTempValue(time, temp);
                     AddHeaterValue(time, heater);
                     AddServoValue(time, servo);
                     AddErrorValue(time, temp - targetTemp);
+
+                    lastTimeValue = time;
                 }
             }
 
