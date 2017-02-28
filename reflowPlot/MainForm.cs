@@ -186,14 +186,25 @@ namespace reflowPlot
             {
                 ;
             }
+            catch (Exception)
+            {
+                e.Result = new Boolean();
+                e.Result = false;
+            }
         }
 
         private void ComPortReadComplete(object sender, RunWorkerCompletedEventArgs e)
         {
+            if ((null != e.Result) && ((Boolean)e.Result).Equals(false))
+            {
+                disconnectComPort();
+                return;
+            }
+
             string[] values = this.serialPortLine.Split(';');
 
             // The values are formated as:
-            //temperature;time;heater duty;servo pos;pid
+            //temperature;time;heater duty;servo pos;target temp
             double temp = 0;
             double time = 0;
             double heater = 0;
@@ -228,7 +239,10 @@ namespace reflowPlot
                 }
             }
 
-            comLineReader.RunWorkerAsync();
+            if (serialConnected)
+            {
+                comLineReader.RunWorkerAsync();
+            }
         }
     }
 }
