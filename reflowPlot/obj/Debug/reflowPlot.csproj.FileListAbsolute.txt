@@ -8,3 +8,4 @@ C:\Users\Erik\Dropbox\Kod\EmbeddedC\reflow\sw\reflow_plot\reflowPlot\reflowPlot\
 C:\Users\Erik\Dropbox\Kod\EmbeddedC\reflow\sw\reflow_plot\reflowPlot\reflowPlot\obj\Debug\reflowPlot.exe
 C:\Users\Erik\Dropbox\Kod\EmbeddedC\reflow\sw\reflow_plot\reflowPlot\reflowPlot\obj\Debug\reflowPlot.pdb
 C:\Users\Erik\Dropbox\Kod\EmbeddedC\reflow\sw\reflow_plot\reflowPlot\reflowPlot\obj\Debug\reflowPlot.MainForm.resources
+C:\Users\Erik\Dropbox\Kod\EmbeddedC\reflow\sw\reflow_plot\reflowPlot\reflowPlot\bin\Debug\Resources\reflow_oven.ico
