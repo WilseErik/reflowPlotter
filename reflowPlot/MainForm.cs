@@ -26,10 +26,14 @@ namespace reflowPlot
         private List<double> heaterXList = new List<double>();
         private List<double> heaterYList = new List<double>();
 
+        private List<double> targetXList = new List<double>();
+        private List<double> targetYList = new List<double>();
+
         string tempSeriesName = "Temperature";
         string errorSeriesName = "Error";
         string servoSeriesName = "Servo";
         string heaterSeriesName = "Heater";
+        string targetSeriesName = "Target temp";
 
         double lastTimeValue = -1;
 
@@ -67,6 +71,27 @@ namespace reflowPlot
             for (int i = 0; i != temperatureXList.Count; ++i)
             {
                 temperatureChart.Series[tempSeriesName].Points.AddXY(temperatureXList[i], temperatureYList[i]);
+            }
+        }
+
+        private void AddTargetValue(double time, double temp)
+        {
+            targetXList.Add(time);
+            targetYList.Add(temp);
+
+            if (temperatureChart.IsHandleCreated)
+            {
+                this.Invoke((MethodInvoker)delegate { UpdateTargetChart(); });
+            }
+        }
+
+        private void UpdateTargetChart()
+        {
+            temperatureChart.Series[targetSeriesName].Points.Clear();
+
+            for (int i = 0; i != targetXList.Count; ++i)
+            {
+                temperatureChart.Series[targetSeriesName].Points.AddXY(targetXList[i], targetYList[i]);
             }
         }
 
@@ -251,12 +276,15 @@ namespace reflowPlot
                         servoYList.Clear();
                         errorXList.Clear();
                         errorYList.Clear();
+                        targetXList.Clear();
+                        targetYList.Clear();
                     }
 
                     AddTempValue(time, temp);
                     AddHeaterValue(time, heater);
                     AddServoValue(time, servo);
                     AddErrorValue(time, temp - targetTemp);
+                    AddTargetValue(time, targetTemp);
 
                     lastTimeValue = time;
                 }
