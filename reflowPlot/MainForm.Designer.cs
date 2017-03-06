@@ -59,6 +59,8 @@
             this.comNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.sysTick = new System.Windows.Forms.Timer(this.components);
+            this.saveButton = new System.Windows.Forms.Button();
+            this.loadButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.temperatureChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.servoChart)).BeginInit();
@@ -222,6 +224,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.loadButton);
+            this.groupBox2.Controls.Add(this.saveButton);
             this.groupBox2.Controls.Add(this.disconnectButton);
             this.groupBox2.Controls.Add(this.connectButton);
             this.groupBox2.Controls.Add(this.comNumericUpDown);
@@ -275,6 +279,26 @@
             this.sysTick.Enabled = true;
             this.sysTick.Interval = 10;
             // 
+            // saveButton
+            // 
+            this.saveButton.Location = new System.Drawing.Point(6, 194);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(121, 23);
+            this.saveButton.TabIndex = 4;
+            this.saveButton.Text = "Save";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            // 
+            // loadButton
+            // 
+            this.loadButton.Location = new System.Drawing.Point(6, 223);
+            this.loadButton.Name = "loadButton";
+            this.loadButton.Size = new System.Drawing.Size(120, 23);
+            this.loadButton.TabIndex = 5;
+            this.loadButton.Text = "Load";
+            this.loadButton.UseVisualStyleBackColor = true;
+            this.loadButton.Click += new System.EventHandler(this.loadButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -321,6 +345,8 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button loadButton;
+        private System.Windows.Forms.Button saveButton;
     }
 }
 

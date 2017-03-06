@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO.Ports;
 using System.Globalization;
+using System.IO;
 
 namespace reflowPlot
 {
@@ -293,6 +294,122 @@ namespace reflowPlot
             if (serialConnected)
             {
                 comLineReader.RunWorkerAsync();
+            }
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            using (StreamWriter sw = new StreamWriter("reflow_data.csv"))
+            {
+                sw.WriteLine(CreateCsvLine(temperatureXList));
+                sw.WriteLine(CreateCsvLine(temperatureYList));
+                sw.WriteLine(CreateCsvLine(heaterXList));
+                sw.WriteLine(CreateCsvLine(heaterYList));
+                sw.WriteLine(CreateCsvLine(servoXList));
+                sw.WriteLine(CreateCsvLine(servoYList));
+                sw.WriteLine(CreateCsvLine(errorXList));
+                sw.WriteLine(CreateCsvLine(errorYList));
+                sw.WriteLine(CreateCsvLine(targetXList));
+                sw.WriteLine(CreateCsvLine(targetYList));
+            }
+        }
+
+        private string CreateCsvLine(List<double> list)
+        {
+            string line = "";
+
+            for (int i = 0; i != list.Count; ++i)
+            {
+                line += list[i].ToString(CultureInfo.InvariantCulture);
+
+                if (i != (list.Count - 1))
+                {
+                    line += ';';
+                }
+            }
+
+            return line;
+        }
+
+        private void LoadList(List<double> list, string csvLine)
+        {
+            string[] values = csvLine.Split(';');
+
+            foreach (string value in values)
+            {
+                string val = value;
+                val = val.Trim();
+
+                if (!val.Equals(""))
+                {
+                    double doubleVal;
+
+                    if (Double.TryParse(val, NumberStyles.Any, CultureInfo.InvariantCulture, out doubleVal))
+                    {
+                        list.Add(doubleVal);
+                    }
+                }
+            }
+
+        }
+
+        private void loadButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (StreamReader sr = new StreamReader("reflow_data.csv"))
+                {
+                    temperatureXList.Clear();
+                    temperatureYList.Clear();
+                    heaterXList.Clear();
+                    heaterYList.Clear();
+                    servoXList.Clear();
+                    servoYList.Clear();
+                    errorXList.Clear();
+                    errorYList.Clear();
+                    targetXList.Clear();
+                    targetYList.Clear();
+
+                    LoadList(temperatureXList, sr.ReadLine());
+                    LoadList(temperatureYList, sr.ReadLine());
+                    LoadList(heaterXList, sr.ReadLine());
+                    LoadList(heaterYList, sr.ReadLine());
+                    LoadList(servoXList, sr.ReadLine());
+                    LoadList(servoYList, sr.ReadLine());
+                    LoadList(errorXList, sr.ReadLine());
+                    LoadList(errorYList, sr.ReadLine());
+                    LoadList(targetXList, sr.ReadLine());
+                    LoadList(targetYList, sr.ReadLine());
+                }
+
+                if (temperatureChart.IsHandleCreated)
+                {
+                    this.Invoke((MethodInvoker)delegate { UpdateTempChart(); });
+                }
+
+                if (temperatureChart.IsHandleCreated)
+                {
+                    this.Invoke((MethodInvoker)delegate { UpdateTargetChart(); });
+                }
+
+                if (errorChart.IsHandleCreated)
+                {
+                    this.Invoke((MethodInvoker)delegate { UpdateErrorChart(); });
+                }
+
+                if (servoChart.IsHandleCreated)
+                {
+                    this.Invoke((MethodInvoker)delegate { UpdateServoChart(); });
+                }
+
+                if (heaterChart.IsHandleCreated)
+                {
+                    this.Invoke((MethodInvoker)delegate { UpdateHeaterChart(); });
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                ;
             }
         }
     }
